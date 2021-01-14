@@ -185,6 +185,7 @@ function AtomsList(atoms, { active, onAction }) {
           basicAtoms.indexOf(label) > -1 ? shortcutStr(atomCuts[label]) : null
         return (
           <li
+            key={`atom-${index}`}
             className={classNames({
               selected: isAtom && active.opts.label === label
             })}>
@@ -207,6 +208,7 @@ function TemplatesList({ active, onAction }) {
     <menu>
       {templates.map((struct, i) => (
         <li
+          key={`template-${i}`}
           id={`template-${i}`}
           className={classNames({
             selected: isTmpl && active.opts.struct === struct
