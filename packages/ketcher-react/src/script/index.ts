@@ -17,14 +17,14 @@ import { StructServiceProvider } from 'ketcher-core'
 import { KetcherBuilder, ButtonsConfig } from './builders'
 
 interface Config {
-  element: HTMLInputElement | null
+  // element: HTMLInputElement | null
   staticResourcesUrl: string
   structServiceProvider: StructServiceProvider
   buttons?: ButtonsConfig
 }
 
 async function buildKetcherAsync({
-  element,
+  // element,
   staticResourcesUrl,
   structServiceProvider,
   buttons
@@ -33,10 +33,11 @@ async function buildKetcherAsync({
 
   await builder.appendApiAsync(structServiceProvider)
   builder.appendServiceMode(structServiceProvider.mode)
-  await builder.appendUiAsync(element, staticResourcesUrl, buttons)
+  await builder.appendUiAsync(/*element, */ staticResourcesUrl, buttons)
 
   return builder.build()
 }
 
 export type { Config, ButtonsConfig }
+export { buildKetcherAsync }
 export default buildKetcherAsync

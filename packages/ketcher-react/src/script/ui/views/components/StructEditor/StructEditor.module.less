@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ***************************************************************************/
+@import '../../../../../style/variables';
+@import '../../../../../style/mixins';
 
 .spinner_overlay {
   position: absolute;
@@ -22,4 +24,44 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.canvas-size(@dim) {
+  .set-size(@dim);
+
+  .measure-log {
+    //top: @canvas-padding;
+    //right: @canvas-padding;
+    top: 0;
+    right: 0;
+  }
+}
+
+.canvas {
+  border: @border-color 1px solid;
+  border-radius: 5px;
+  overflow: auto;
+
+  .canvas-size(inherit);
+
+  user-select: none;
+
+  svg {
+    height: 99%; /* temp. prevent scrollbar */
+    width: 100%;
+  }
+
+  .measure-log {
+    position: absolute;
+    &:extend(.-measure);
+    &.visible {
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-height: 600px), (max-width: 1040px) {
+  .canvas {
+    .canvas-size(small);
+  }
 }

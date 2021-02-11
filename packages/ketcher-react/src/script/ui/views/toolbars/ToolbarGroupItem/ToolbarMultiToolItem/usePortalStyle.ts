@@ -13,4 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ***************************************************************************/
-export * from './App'
+import { CSSProperties, RefObject, useEffect, useState } from 'react'
+
+type HookParams = [RefObject<HTMLDivElement>, boolean]
+
+function usePortalStyle([ref, isOpen]: HookParams) {
+  const [portalStyle, setPortalStyle] = useState<CSSProperties>({})
+
+  useEffect(() => {
+    if (!ref.current) {
+      return
+    }
+
+    const rect = ref.current.getBoundingClientRect()
+    const top = rect.top
+
+    const spaceBetween = 4
+    const left = rect.left + rect.width + spaceBetween
+
+    setPortalStyle({ top: `${top}px`, left: `${left}px` })
+  }, [ref, ref.current, isOpen])
+
+  return [portalStyle]
+}
+
+export { usePortalStyle }

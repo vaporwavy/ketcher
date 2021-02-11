@@ -13,4 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ***************************************************************************/
-export * from './App'
+export * from './BottomToolbar'
+export * from './LeftToolbar'
+export * from './RightToolbar'
+export * from './TopToolbar'

@@ -13,4 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ***************************************************************************/
-export * from './App'
+import { connect } from 'react-redux'
+import { checkServer } from '../state/server'
+import { initKeydownListener } from '../state/hotkeys'
+import { App, AppCallProps } from './App'
+
+const mapDispatchToProps = (): AppCallProps => ({
+  checkServer,
+  initKeydownListener
+})
+
+const AppContainer = connect(null, mapDispatchToProps)(App)
+
+export { AppContainer }
+export default AppContainer

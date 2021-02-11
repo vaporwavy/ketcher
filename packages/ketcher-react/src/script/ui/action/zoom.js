@@ -39,6 +39,7 @@ export const zoomList = [
   4
 ]
 
+/** @type {Partial<import('./action.types').Tools>} */
 export default {
   zoom: {
     selected: editor => editor.zoom()

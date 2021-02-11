@@ -18,6 +18,7 @@ import { bond as bondSchema } from '../data/schema/struct-schema'
 import { toBondType } from '../data/convert/structconv'
 import { SimpleObjectMode } from '../../chem/struct'
 
+/** @type {Partial<import('./action.types').Tools>} */
 const toolActions = {
   'select-lasso': {
     title: 'Lasso Selection',

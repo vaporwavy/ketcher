@@ -13,4 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ***************************************************************************/
-export * from './App'
+import { useEffect, useState } from 'react'
+
+function usePortalOpening([id, opened, options]) {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  useEffect(() => {
+    const _currentId = (options.length && options![0].id) || ''
+    const _isOpen = opened === id || opened === _currentId
+    setIsOpen(_isOpen)
+  }, [opened, options])
+
+  return [isOpen]
+}
+
+export { usePortalOpening }

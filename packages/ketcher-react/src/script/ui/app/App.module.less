@@ -13,4 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ***************************************************************************/
-export * from './App'
+.app {
+  position: relative;
+  display: grid;
+  grid-template-areas:
+    '. toolbar-top .'
+    'toolbar-left canvas toolbar-right'
+    '. toolbar-bottom .';
+  grid-template-columns: minmax(40px, auto) 1fr minmax(40px, auto);
+  grid-template-rows: auto 1fr auto;
+}
+
+.canvas {
+  grid-area: canvas;
+}

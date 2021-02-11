@@ -13,4 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ***************************************************************************/
-export * from './App'
+import React, { useEffect, useRef } from 'react'
+import { useSettingsContext } from '../../../../hooks'
+
+interface AppHiddenCallProps {
+  onInitTmpls: (cacheEl, url) => void
+}
+
+type Props = AppHiddenCallProps
+
+const AppHidden = (props: Props) => {
+  const { onInitTmpls } = props
+
+  const ref = useRef(null)
+  const { staticResourcesUrl } = useSettingsContext()
+
+  useEffect(() => {
+    onInitTmpls(ref.current, staticResourcesUrl)
+  }, [])
+
+  return <div style={{ display: 'none' }} ref={ref} />
+}
+
+export type { AppHiddenCallProps }
+export { AppHidden }

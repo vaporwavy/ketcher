@@ -22,7 +22,7 @@ import {
 import createApi from '../../api'
 import Editor from '../../editor'
 import { Ketcher, UI as KetcherUI } from '../../ketcher'
-import initUI from '../../ui'
+import { initApp } from '../../ui'
 import { ButtonsConfig } from './ButtonsConfig'
 import { molfileManager } from '../../chem/molfile'
 import smilesManager from '../../chem/smiles'
@@ -36,7 +36,7 @@ class KetcherBuilder {
   private ui: KetcherUI | null
 
   private tempUIDataContainer: null | {
-    element: HTMLInputElement | null
+    // element: HTMLInputElement | null
     staticResourcesUrl: string
     buttons?: ButtonsConfig
   }
@@ -75,7 +75,7 @@ class KetcherBuilder {
   }
 
   async appendUiAsync(
-    element: HTMLInputElement | null,
+    // element: HTMLInputElement | null,
     staticResourcesUrl: string,
     buttons?: ButtonsConfig
   ): Promise<void> {
@@ -83,7 +83,7 @@ class KetcherBuilder {
 
     if (!structService) {
       this.tempUIDataContainer = {
-        element,
+        // element,
         staticResourcesUrl,
         buttons
       }
@@ -97,8 +97,8 @@ class KetcherBuilder {
     }
 
     const editor = await new Promise<Editor>(resolve => {
-      tempRef.ui = initUI(
-        element,
+      tempRef.ui = initApp(
+        // element,
         staticResourcesUrl,
         {
           buttons: buttons || {},

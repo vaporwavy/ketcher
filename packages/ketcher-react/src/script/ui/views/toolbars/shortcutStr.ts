@@ -13,4 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ***************************************************************************/
-export * from './App'
+const isMac = /Mac/.test(navigator.platform) // eslint-disable-line no-undef
+const shortcutAliasMap = {
+  Escape: 'Esc',
+  Delete: 'Del',
+  Mod: isMac ? '⌘' : 'Ctrl'
+}
+
+export function shortcutStr(shortcut?: string | string[]) {
+  if (!shortcut) {
+    return ''
+  }
+
+  const shortcutKey = Array.isArray(shortcut) ? shortcut[0] : shortcut
+  return shortcutKey.replace(
+    /(\b[a-z]\b$|Mod|Escape|Delete)/g,
+    key => shortcutAliasMap[key] || key.toUpperCase()
+  )
+}

@@ -14,26 +14,65 @@
  * limitations under the License.
  ***************************************************************************/
 import 'element-closest-polyfill'
+// import { StructService } from 'ketcher-core'
 import React, { useEffect, useRef } from 'react'
+// import ReactDOM from 'react-dom'
+// import { Provider } from 'react-redux'
 import 'regenerator-runtime/runtime'
 import 'url-search-params-polyfill'
 import 'whatwg-fetch'
+// import { SettingsContext } from './contexts'
 import './index.less'
-import init, { Config } from './script'
+import { /*init, */ buildKetcherAsync, Config } from './script'
+// import App from './script/ui/App/App.container'
+// import createStore, { load } from './script/ui/state'
+// import { initKeydownListener } from './script/ui/state/hotkeys'
+// import { loadStruct } from './script/ui/state/shared'
+// import { initResize } from './script/ui/state/toolbar'
 
 interface EditorProps extends Omit<Config, 'element'> {}
 
 function Editor(props: EditorProps) {
-  const rootElRef = useRef<HTMLInputElement>(null)
+  // const rootElRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
-    init({
-      ...props,
-      element: rootElRef.current
+    buildKetcherAsync({
+      ...props
+      // element: rootElRef.current
     })
     // TODO: provide the list of dependencies after implementing unsubscribe function
   }, [])
 
-  return <div ref={rootElRef} className="ketcher root"></div>
+  return (
+    <div
+      // ref={rootElRef}
+      className="ketcher-root"></div>
+  )
 }
+
+// function initApp(
+//   element: HTMLInputElement | null,
+//   staticResourcesUrl: string,
+//   options: any,
+//   server: StructService,
+//   setEditor: (editor: any) => void
+// ) {
+//   const store = createStore(options, server, setEditor)
+//   store.dispatch(initKeydownListener(element))
+//   store.dispatch(initResize())
+//
+//   ReactDOM.render(
+//     <Provider store={store}>
+//       <SettingsContext.Provider value={{ staticResourcesUrl }}>
+//         <App />
+//       </SettingsContext.Provider>
+//     </Provider>,
+//     element
+//   )
+//
+//   return {
+//     load: (structStr, opts) => store.dispatch(load(structStr, opts)),
+//     loadStruct
+//   }
+// }
 
 export { Editor }

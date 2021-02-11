@@ -16,6 +16,7 @@
 
 import { serverTransform } from '../state/server'
 
+/** @type {Partial<import('./action.types').Tools>} */
 const config = {
   layout: {
     shortcut: 'Mod+l',

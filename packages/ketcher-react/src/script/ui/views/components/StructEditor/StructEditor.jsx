@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ***************************************************************************/
-
+import clsx from 'clsx'
 import { upperFirst } from 'lodash/fp'
 import React, { Component, createRef } from 'react'
+
 import Editor from '../../../../editor'
 import Spinner from '../Spinner'
-
 import styles from './StructEditor.module.less'
 
 //TODO: need to update component after making refactoring of store
@@ -113,12 +113,14 @@ class StructEditor extends Component {
       onDearomatizeStruct,
       onAttachEdit,
       indigoVerification,
+      className,
       ...props
     } = this.props
 
     return (
       <Tag
         onMouseDown={event => event.preventDefault()}
+        className={clsx(styles.canvas, className)}
         {...props}
         ref={this.editorRef}>
         {/* svg here */}

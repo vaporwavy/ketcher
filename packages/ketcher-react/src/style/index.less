@@ -1,6 +1,7 @@
 @import (less) 'normalize.css';
 
 @import 'variables';
+@import 'toolbar';
 @import 'mixins';
 @import 'dialogs';
 
@@ -11,6 +12,11 @@ menu {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.ketcher-root {
+  height: 100%;
+  width: 100%;
 }
 
 /////////////////////
@@ -24,82 +30,21 @@ body {
   width: 100%;
 }
 
-body,
-main[role='application'] {
+body {
   height: 100%;
   position: relative;
   font: @base-size FreeSans, Arimo, 'Droid Sans', Helvetica, 'Helvetica Neue',
     Arial, sans-serif;
   background-color: white;
   color: @main-color;
-
   min-width: 640px;
   min-height: 400px;
-}
-
-#canvas {
-  .canvas;
-  user-select: none;
-
-  .measure-log {
-    &:extend(.-Measure);
-    &.visible {
-      opacity: 1;
-    }
-  }
-}
-
-#mainmenu {
-  .toolbar(top);
-}
-#elements {
-  .toolbar(right);
-}
-#template {
-  .toolbar(bottom);
-  & > menu {
-    overflow: hidden; // #300 quick fix,
-  } // no menu expansion
-}
-#toolbox {
-  .toolbar(left);
-}
-
-#meta {
-  position: absolute;
-  right: 0;
 }
 
 #enhanced-stereo {
   position: absolute;
   right: 0;
   overflow-y: hidden;
-}
-
-[role='toolbar'] {
-  user-select: none;
-  menu {
-    .remove-inline-spacing;
-  }
-  li {
-    display: inline-block;
-    vertical-align: top;
-    & > svg {
-      fill: @main-color;
-      display: none; // dropdown
-    }
-  }
-  button {
-    .toolbutton;
-  }
-  .selected button {
-    .highlight-invert;
-  }
-  kbd {
-    display: none;
-    font: 0.8em monospace;
-    color: @border-color;
-  }
 }
 
 .cliparea {
@@ -147,29 +92,6 @@ select {
 
 //////////////////////////
 // Adjust to custom sizes
-
-#select,
-#bond-common,
-#bond-stereo,
-#bond-query,
-#reaction {
-  .collapsed-ifnot(opened);
-}
-
-@media (max-width: 840px) {
-  #zoom-in,
-  #zoom-out {
-    display: none;
-  }
-}
-
-@media (max-width: 1040px) {
-  #bond-common,
-  #bond-stereo,
-  #bond-query {
-    .collapsed-size(small);
-  }
-}
 
 @media (max-height: 850px) {
   #rgroup,
@@ -247,15 +169,6 @@ select {
   }
 }
 
-@media (min-width: 1160px) {
-  #analyse,
-  #document,
-  #edit,
-  #zoom {
-    .separate-item(horizontal, 10px);
-  }
-}
-
 @media (max-height: 600px), (max-width: 1040px) {
   .set-size(small);
 
@@ -263,21 +176,6 @@ select {
   select,
   form {
     font-size: @base-size;
-  }
-  #canvas {
-    .canvas-size(small);
-  }
-  #mainmenu,
-  #template {
-    .toolbar-size(horizontal, small);
-  }
-  #elements,
-  #toolbox {
-    .toolbar-size(vertical, small);
-  }
-
-  [role='toolbar'] button {
-    .toolbutton-size(small);
   }
 
   #select,
@@ -300,24 +198,11 @@ select {
   #about {
     display: none;
   }
-  #mainmenu {
-    .set-size(small);
-    left: @toolbar-gap;
-    right: @toolbar-gap;
-  }
-}
-
-#template-common {
-  .separate-item(horizontal, 15px);
-}
-
-.cellar {
-  display: none;
 }
 
 .warning {
   color: @error-color;
-  &:before {
+  &::before {
     content: '⚠ ';
   }
 }
